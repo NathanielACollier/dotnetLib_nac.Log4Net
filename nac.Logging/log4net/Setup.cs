@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using log4net.Repository.Hierarchy;
 
 namespace nac.Logging.log4netLib;
 
@@ -30,7 +31,22 @@ public static class Setup
 
     }
 
+    public static Hierarchy GetRepo()
+    {
+	    InitializeLog4Net();
 
+	    var repo = (log4net.Repository.Hierarchy.Hierarchy)log4net.LogManager.GetRepository();
+	    return repo;
+    }
 
+    
+    public static bool IsLog4NetConfigured()
+    {
+	    // source of this type of check is: http://neilkilbride.blogspot.com/2008/04/configure-log4net-only-once.html
+	    var repo = log4net.LogManager.GetRepository();
+
+	    return repo.Configured;
+    }
+    
 
 }
