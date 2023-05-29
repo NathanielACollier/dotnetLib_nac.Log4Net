@@ -5,4 +5,8 @@
 	  <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+  </ItemGroup>
+
 </Project>
