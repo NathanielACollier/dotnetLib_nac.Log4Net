@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using log4net.Core;
 
 namespace nac.Logging;
 
@@ -29,57 +30,83 @@ public class Logger
         this.source = __source;
     }
 
-    public void Debug(string messageText, [CallerMemberName] string callerMemberName = "")
+    public void Debug(string messageText, 
+        [CallerMemberName] string callerMemberName = "",
+        [CallerFilePath] string sourceFilePath = "", 
+        [CallerLineNumber] int sourceLineNumber = 0
+        )
     {
         CreateLogEntry(new Models.LogEntryCreationInfo
         {
             Source = this.source,
             CallingMemberName = callerMemberName,
+            CallingFilePath = sourceFilePath,
+            CallingLineNumber = sourceLineNumber,
             MessageText = messageText,
             Level = Models.LogLevel.Debug
         });
     }
 
-    public void Info(string messageText, [CallerMemberName] string callerMemberName = "")
+    public void Info(string messageText, [CallerMemberName] string callerMemberName = "",
+        [CallerFilePath] string sourceFilePath = "", 
+        [CallerLineNumber] int sourceLineNumber = 0
+        )
     {
         CreateLogEntry(new Models.LogEntryCreationInfo
         {
             Source = this.source,
             CallingMemberName = callerMemberName,
+            CallingFilePath = sourceFilePath,
+            CallingLineNumber = sourceLineNumber,
             MessageText = messageText,
             Level = Models.LogLevel.Info
         });
     }
 
-    public void Warn(string messageText, [CallerMemberName] string callerMemberName = "")
+    public void Warn(string messageText, [CallerMemberName] string callerMemberName = "",
+        [CallerFilePath] string sourceFilePath = "", 
+        [CallerLineNumber] int sourceLineNumber = 0
+        )
     {
         CreateLogEntry(new Models.LogEntryCreationInfo
         {
             Source = this.source,
             CallingMemberName = callerMemberName,
+            CallingFilePath = sourceFilePath,
+            CallingLineNumber = sourceLineNumber,
             MessageText = messageText,
             Level = Models.LogLevel.Warn
         });
     }
 
 
-    public void Error(string messageText, [CallerMemberName] string callerMemberName = "")
+    public void Error(string messageText, [CallerMemberName] string callerMemberName = "",
+        [CallerFilePath] string sourceFilePath = "", 
+        [CallerLineNumber] int sourceLineNumber = 0
+        )
     {
         CreateLogEntry(new Models.LogEntryCreationInfo
         {
             Source = this.source,
             CallingMemberName = callerMemberName,
+            CallingFilePath = sourceFilePath,
+            CallingLineNumber = sourceLineNumber,
             MessageText = messageText,
             Level = Models.LogLevel.Error
         });
     }
 
-    public void Fatal(string messageText, [CallerMemberName] string callerMemberName = "")
+    public void Fatal(string messageText, [CallerMemberName] string callerMemberName = "",
+        [CallerFilePath] string sourceFilePath = "", 
+        [CallerLineNumber] int sourceLineNumber = 0
+        )
     {
         CreateLogEntry(new Models.LogEntryCreationInfo
         {
             Source = this.source,
             CallingMemberName = callerMemberName,
+            CallingFilePath = sourceFilePath,
+            CallingLineNumber = sourceLineNumber,
             MessageText = messageText,
             Level = Models.LogLevel.Fatal
         });
@@ -102,20 +129,21 @@ public class Logger
 
     public static void CreateLogEntry(Models.LogEntryCreationInfo creationInfo)
     {
-        var logEntry = new Models.LogEntry
-        {
-            Source = creationInfo.Source,
-            CallingMemberName = creationInfo.CallingMemberName,
-            Occured = DateTime.Now,
-            Level = creationInfo.Level,
-            MessageText = creationInfo.MessageText
-        };
+        var apacheLog = log4net.LogManager.GetLogger(name: creationInfo.Source.ClassName);
 
-        var appendersAtCallTime = new List<Appenders.LogAppender>(appenders); // make a copy to prevent collection was modified in foreach loop errors
-        foreach (var _a in appendersAtCallTime)
+        var logEvent = new log4net.Core.LoggingEvent(new LoggingEventData
         {
-            _a.HandleLog(logEntry);
-        }
+            Level = log4netLib.Appenders.Util.GetLogLevel(creationInfo.Level),
+            Message = creationInfo.MessageText,
+            TimeStampUtc = DateTime.Now.ToUniversalTime(),
+            LocationInfo = new log4net.Core.LocationInfo(className: creationInfo.Source.ClassName,
+                methodName: creationInfo.CallingMemberName,
+                fileName: creationInfo.CallingFilePath,
+                lineNumber: creationInfo.CallingLineNumber.ToString()
+                )
+        } );
+        
+        apacheLog.Logger.Log(logEvent);
     }
 }
 

@@ -7,6 +7,7 @@ namespace nac.Logging.Models;
 public class LoggerSourceInfo
 {
     public string ClassName { get; set; }
+    public Type SourceType { get; set; }
 
 
     public LoggerSourceInfo()
@@ -16,6 +17,7 @@ public class LoggerSourceInfo
 
     public LoggerSourceInfo(Type typeInfo)
     {
+        this.SourceType = typeInfo;
         this.ClassName = typeInfo.FullName;
     }
 }
