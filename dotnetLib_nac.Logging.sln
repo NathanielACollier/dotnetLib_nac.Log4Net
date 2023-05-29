@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nac.Logging", "nac.Logging\nac.Logging.csproj", "{EF954A86-2F68-448E-AB81-F4F38F437AF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EF954A86-2F68-448E-AB81-F4F38F437AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF954A86-2F68-448E-AB81-F4F38F437AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF954A86-2F68-448E-AB81-F4F38F437AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
