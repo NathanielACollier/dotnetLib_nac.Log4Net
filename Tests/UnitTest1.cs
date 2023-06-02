@@ -17,5 +17,8 @@ public class UnitTest1
     public void TestMethod1()
     {
         log.Info("Hello World!");
+        log.Warn("This is a warning message");
+        log.Error("Here is an Error");
+        log.Fatal("And this is a fatal example");
     }
 }
