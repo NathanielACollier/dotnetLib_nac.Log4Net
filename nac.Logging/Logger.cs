@@ -140,7 +140,8 @@ public class Logger
                 methodName: creationInfo.CallingMemberName,
                 fileName: creationInfo.CallingFilePath,
                 lineNumber: creationInfo.CallingLineNumber.ToString()
-                )
+                ),
+            LoggerName = $"{creationInfo.Source.ClassName}.{creationInfo.CallingMemberName}"
         } );
         
         apacheLog.Logger.Log(logEvent);
