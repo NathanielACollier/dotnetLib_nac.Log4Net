@@ -3,10 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	  <LangVersion>latestmajor</LangVersion>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Description>Provides a way to log to log4net appenders via code.  No xml configuration needed</Description>
+      <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="nac.Logging" Version="1.0.3" />
   </ItemGroup>
 
 </Project>

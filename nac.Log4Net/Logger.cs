@@ -6,111 +6,25 @@ using log4net.Core;
 
 namespace nac.Log4Net;
 
-public class Logger
+public class Logger : nac.Logging.Logger
 {
 
-    private Models.LoggerSourceInfo source;
-
-    public Logger()
+    public Logger() : base()
     {
-        // get calling assembly
-        var mth = new System.Diagnostics.StackTrace().GetFrame(1).GetMethod();
-        var _class_to_log = mth.ReflectedType;
-
-        this.source = new Models.LoggerSourceInfo(_class_to_log);
-    }
-
-    /**
-     * <summary>
-     *  This constructor should only be used for compatibility with other logging frameworks
-     * </summary>
-     */
-    public Logger(Models.LoggerSourceInfo __source)
-    {
-        this.source = __source;
-    }
-
-    public void Debug(string messageText, 
-        [CallerMemberName] string callerMemberName = "",
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerLineNumber] int sourceLineNumber = 0
-        )
-    {
-        CreateLogEntry(new Models.LogEntryCreationInfo
+        OnNewMessage += (_s, _message) =>
         {
-            Source = this.source,
-            CallingMemberName = callerMemberName,
-            CallingFilePath = sourceFilePath,
-            CallingLineNumber = sourceLineNumber,
-            MessageText = messageText,
-            Level = Models.LogLevel.Debug
-        });
+            CreateLogEntry(new Models.LogEntryCreationInfo
+            {
+                Source = new Models.LoggerSourceInfo(_message.CallingClassType),
+                CallingMemberName = _message.CallingMemberName,
+                CallingFilePath = _message.CallingSourceFilePath,
+                CallingLineNumber = _message.CallingSourceLineNumber,
+                MessageText = _message.Message,
+                Level = getLogLevelFromText(_message.Level)
+            });
+        };
     }
 
-    public void Info(string messageText, [CallerMemberName] string callerMemberName = "",
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerLineNumber] int sourceLineNumber = 0
-        )
-    {
-        CreateLogEntry(new Models.LogEntryCreationInfo
-        {
-            Source = this.source,
-            CallingMemberName = callerMemberName,
-            CallingFilePath = sourceFilePath,
-            CallingLineNumber = sourceLineNumber,
-            MessageText = messageText,
-            Level = Models.LogLevel.Info
-        });
-    }
-
-    public void Warn(string messageText, [CallerMemberName] string callerMemberName = "",
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerLineNumber] int sourceLineNumber = 0
-        )
-    {
-        CreateLogEntry(new Models.LogEntryCreationInfo
-        {
-            Source = this.source,
-            CallingMemberName = callerMemberName,
-            CallingFilePath = sourceFilePath,
-            CallingLineNumber = sourceLineNumber,
-            MessageText = messageText,
-            Level = Models.LogLevel.Warn
-        });
-    }
-
-
-    public void Error(string messageText, [CallerMemberName] string callerMemberName = "",
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerLineNumber] int sourceLineNumber = 0
-        )
-    {
-        CreateLogEntry(new Models.LogEntryCreationInfo
-        {
-            Source = this.source,
-            CallingMemberName = callerMemberName,
-            CallingFilePath = sourceFilePath,
-            CallingLineNumber = sourceLineNumber,
-            MessageText = messageText,
-            Level = Models.LogLevel.Error
-        });
-    }
-
-    public void Fatal(string messageText, [CallerMemberName] string callerMemberName = "",
-        [CallerFilePath] string sourceFilePath = "", 
-        [CallerLineNumber] int sourceLineNumber = 0
-        )
-    {
-        CreateLogEntry(new Models.LogEntryCreationInfo
-        {
-            Source = this.source,
-            CallingMemberName = callerMemberName,
-            CallingFilePath = sourceFilePath,
-            CallingLineNumber = sourceLineNumber,
-            MessageText = messageText,
-            Level = Models.LogLevel.Fatal
-        });
-    }
 
 
     public static Models.LogLevel getLogLevelFromText(string logLevelText)
