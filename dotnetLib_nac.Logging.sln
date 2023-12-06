@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nac.Logging", "nac.Logging\nac.Logging.csproj", "{EF954A86-2F68-448E-AB81-F4F38F437AF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nac.Log4Net", "nac.Log4Net\nac.Log4Net.csproj", "{EF954A86-2F68-448E-AB81-F4F38F437AF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AABF5360-B1AE-4D76-A6B9-6B7FB97D8996}"
 EndProject

@@ -3,7 +3,7 @@ using System.IO;
 using log4net.Appender;
 using log4net.Core;
 
-namespace nac.Logging.log4netLib.Appenders.models;
+namespace nac.Log4Net.log4netLib.Appenders.models;
 
 public class NotifyAppender : AppenderSkeleton
 {

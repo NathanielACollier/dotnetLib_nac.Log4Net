@@ -1,13 +1,13 @@
-﻿using nac.Logging.Models;
+﻿using nac.Log4Net.Models;
 
-namespace nac.Logging.log4netLib.Appenders;
+namespace nac.Log4Net.log4netLib.Appenders;
 
 public static class Util
 {
     public const string DefaultLogPattern = "[%date{yyyy-MM-dd hh:mm:sstt}] %-5level %logger - %message%newline";
 
 
-    public static log4net.Core.Level GetLogLevel(nac.Logging.Models.LogLevel nacLevel)
+    public static log4net.Core.Level GetLogLevel(LogLevel nacLevel)
     {
         return nacLevel switch
         {

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using log4net.Core;
 
-namespace nac.Logging;
+namespace nac.Log4Net;
 
 public class Logger
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using log4net.Repository.Hierarchy;
 
-namespace nac.Logging.log4netLib;
+namespace nac.Log4Net.log4netLib;
 
 public static class Setup
 {

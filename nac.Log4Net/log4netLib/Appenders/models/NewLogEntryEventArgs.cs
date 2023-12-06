@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace nac.Logging.log4netLib.Appenders.models;
+namespace nac.Log4Net.log4netLib.Appenders.models;
 
 public class NewLogEntryEventArgs : EventArgs
 {

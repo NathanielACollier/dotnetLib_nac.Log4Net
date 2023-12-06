@@ -5,12 +5,12 @@ namespace Tests;
 [TestClass]
 public class UnitTest1
 {
-    private static nac.Logging.Logger log = new();
+    private static nac.Log4Net.Logger log = new();
     
     [ClassInitialize]
     public static void Setup(TestContext context)
     {
-        nac.Logging.log4netLib.Appenders.Console.AddDebugConsoleAppender();
+        nac.Log4Net.log4netLib.Appenders.Console.AddDebugConsoleAppender();
     }
     
     [TestMethod]

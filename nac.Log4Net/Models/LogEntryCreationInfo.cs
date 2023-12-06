@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace nac.Logging.Models;
+namespace nac.Log4Net.Models;
 
 public class LogEntryCreationInfo
 {

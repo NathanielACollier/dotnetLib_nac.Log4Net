@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace nac.Logging.log4netLib.Appenders;
+namespace nac.Log4Net.log4netLib.Appenders;
 
 public class Network
 {

@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\nac.Logging\nac.Logging.csproj" />
+      <ProjectReference Include="..\nac.Log4Net\nac.Log4Net.csproj" />
     </ItemGroup>
 
 </Project>
